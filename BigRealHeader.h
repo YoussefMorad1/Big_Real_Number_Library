@@ -25,9 +25,9 @@ public:
 
     BigReal(BigReal &&rhs);
 
-    void print() {
-        cout << digits;
-    }
+    BigReal operator+(BigReal num);
+
+    void print();
 };
 
 #endif //BIG_REAL_BIGREALHEADER_H
