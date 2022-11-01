@@ -88,3 +88,36 @@ void BigReal::print() {
         cout << '-';
     cout << s;
 }
+
+BigReal BigReal::operator+(BigReal num) {
+    string s = digits.getNumber(), s1 = num.digits.getNumber();
+    string lz;
+
+    int cnt1 = digits.size(), cnt2 = num.digits.size();
+
+    for (int i = 0; i < abs((cnt1 - dotpos) - (cnt2 - num.dotpos)); i++) {
+        lz += "0";
+    }
+    if (cnt1 - dotpos > cnt2 - num.dotpos) {
+        s1 = s1 + lz;
+    } else {
+        s = s + lz;
+    }
+    lz = "";
+    for (int i = 0; i < abs(dotpos - num.dotpos); i++) {
+        lz += "0";
+    }
+    if (dotpos > num.dotpos) {
+        s1 = lz + s1;
+    } else {
+        s = lz + s;
+    }
+    if (sign == 0)
+        s = '-' + s;
+    if (num.sign == 0)
+        s1 = '-' + s1;
+    BigDecimalInt Big1(s), Big2(s1);
+    BigReal BR(Big1 + Big2);
+    BR.dotpos = max(dotpos, num.dotpos);
+    return BR;
+}
