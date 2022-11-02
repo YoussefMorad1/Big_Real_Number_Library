@@ -26,7 +26,11 @@ public:
     BigReal(BigReal &&rhs);
 
     BigReal operator+(BigReal num);
-
+    
+    int size();
+   
+    int signReal():
+    
     void print();
 };
 
