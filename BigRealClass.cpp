@@ -2,7 +2,7 @@
 #include <regex>
 
 void BigReal::setdigits(string str) {
-    regex check("[+-]?([0-9]+[.]?[0-9]*|.[0-9]+)");
+    regex check("[+-]?([0-9]+[.]?[0-9]*|[.][0-9]+)");
     if (!regex_match(str, check)) {
         cout << "\nInvalid input to BigRealClass!\n";
         exit(1);
@@ -18,7 +18,7 @@ void BigReal::setdigits(string str) {
         }
     }
     str = str.substr(idx + 1, str.size() - idx);
-
+    if(str.empty()) str = "0";
     int pos = str.find('.');
     if (pos != -1) {
         // deleting tailing zeros in fraction
@@ -121,12 +121,11 @@ BigReal BigReal::operator+(BigReal num) {
     BR.dotpos = max(dotpos, num.dotpos);
     return BR;
 }
-// return size.
-int BigReal ::size() {
-        return digits.getNumber().size();
-    }
 
-
+// return size
+int BigReal::size() {
+    return digits.getNumber().size();
+}
 
 // function returns the sign
 int BigReal::signReal() {

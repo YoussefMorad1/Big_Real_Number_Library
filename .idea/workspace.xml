@@ -54,6 +54,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RunManager">
     <configuration name="Big_Real" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Big_Real" TARGET_NAME="Big_Real" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Big_Real" RUN_TARGET_NAME="Big_Real">
@@ -82,9 +83,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/BigRealClass.cpp</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>7</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

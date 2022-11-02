@@ -29,8 +29,8 @@ public:
     
     int size();
    
-    int signReal():
-    
+    int signReal();
+
     void print();
 };
 
