@@ -121,3 +121,18 @@ BigReal BigReal::operator+(BigReal num) {
     BR.dotpos = max(dotpos, num.dotpos);
     return BR;
 }
+// return size.
+int BigReal ::size() {
+        return digits.getNumber().size();
+    }
+
+
+
+// function returns the sign
+int BigReal::signReal() {
+    if (sign == '+') {
+        return 1;
+    } else {
+        return 0;
+    }
+}
