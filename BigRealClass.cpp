@@ -122,6 +122,44 @@ BigReal BigReal::operator+(BigReal num) {
     return BR;
 }
 
+
+BigReal BigReal::operator- (BigReal num){
+    string str1 = digits.getNumber(), str2 = num.digits.getNumber();
+    string lz;
+    int cnt=digits.size(), cnt1=num.digits.size();
+    for (int i = 0; i < abs((cnt-dotpos)-(cnt1 - num.dotpos)); ++i) {
+        lz+="0";
+    }
+    if(cnt > cnt1){
+        str2 = str2 + lz;
+    }
+    else{
+        str1 = str1+ lz;
+    }
+    lz = "";
+
+    for(int i=0;i< abs(dotpos- num.dotpos);i++){
+        lz+="0";
+    }
+    if(dotpos>num.dotpos){
+        str2 = lz + str2;
+    }
+    else{
+        str1 = lz + str1;
+    }
+    if(sign == 0){
+        str1 = "-" + str1;
+    }
+    if(num.sign==0){
+        str2 = "-" + str2;
+    }
+    BigDecimalInt BDI1(str1), BDI2(str2);
+    BigReal BR(BDI1 - BDI2);
+    BR.dotpos = max(dotpos, num.dotpos);
+    return BR;
+
+}
+
 // return size
 int BigReal::size() {
     return digits.getNumber().size();

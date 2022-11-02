@@ -6,8 +6,9 @@ int main() {
     while (cin >> n1 >> n2) {
         BigReal x(n1);
         BigReal y(n2);
-        BigReal z(x + y);
+        BigReal z(x - y);
         z.print();
+
         cout << endl;
     }
 }

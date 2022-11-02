@@ -1,3 +1,3 @@
-C:/Users/Youssef/Documents/GitHub/Big_Real/cmake-build-debug/CMakeFiles/Big_Real.dir
-C:/Users/Youssef/Documents/GitHub/Big_Real/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Youssef/Documents/GitHub/Big_Real/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Ah/OneDrive/Desktop/programing 1/GitHub/Big_Real_Number_Library/cmake-build-debug/CMakeFiles/Big_Real.dir
+C:/Users/Ah/OneDrive/Desktop/programing 1/GitHub/Big_Real_Number_Library/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Ah/OneDrive/Desktop/programing 1/GitHub/Big_Real_Number_Library/cmake-build-debug/CMakeFiles/rebuild_cache.dir
