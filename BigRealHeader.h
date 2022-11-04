@@ -28,9 +28,20 @@ public:
     BigReal operator+(BigReal num);
 
     BigReal operator-(BigReal num);
+
+    bool operator< (BigReal antherBigReal);
+
+    bool operator> (BigReal antherBigReal);
+
     int size();
-   
+
     int signReal();
+
+    friend ostream& operator << (ostream& out, BigReal num);
+
+    friend istream& operator >> (istream& out, BigReal num);
+
+    bool operator== (BigReal anotherReal);
 
     void print();
 };

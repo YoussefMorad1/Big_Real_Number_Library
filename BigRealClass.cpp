@@ -160,16 +160,135 @@ BigReal BigReal::operator- (BigReal num){
 
 }
 
-// return size
-int BigReal::size() {
-    return digits.getNumber().size();
+bool BigReal::operator<(BigReal antherReal) {
+    string s = digits.getNumber(), s1 = antherReal.digits.getNumber();
+    string comp1 = "", comp2 = "";
+    int cnt1 = digits.size(), cnt2 = antherReal.digits.size();
+
+    string str1 = s.substr(0, dotpos);
+
+    string str2 = s1.substr(0, antherReal.dotpos);
+
+    string frac1 = s.substr(dotpos, digits.size() - dotpos); // after dot
+
+    string frac2 = s1.substr(dotpos, antherReal.digits.size() - antherReal.dotpos);
+
+    int len1 = (digits.size() - dotpos), len2 = (antherReal.digits.size() - antherReal.dotpos);
+
+    int len3 = frac1.size(), len4 = frac2.size();
+
+    while (dotpos < antherReal.dotpos) {
+        comp1 += "0";
+        antherReal.dotpos--;
+    }
+    while (dotpos > antherReal.dotpos) {
+        comp2 += "0";
+        dotpos--;
+    }
+    str1 = comp1 + str1;
+    // 11 , 05
+    str2 = comp2 + str2;
+    comp1 = "";
+    comp2 = "";
+
+    while ((digits.size() - dotpos) > (antherReal.digits.size() - antherReal.dotpos)) {
+        comp1 += '0';
+        len1--;
+    }
+    while ((digits.size() - dotpos) < (antherReal.digits.size() - antherReal.dotpos)) {
+        comp2 += '0';
+        len2--;
+    }
+    frac1 = frac1 + comp1;
+    frac2 = frac2 + comp2;
+    string BD1 = str1 + frac1, BD2 = str2 + frac2;
+    BigDecimalInt ob1(BD1), ob2(BD2);
+
+    if (sign && antherReal.sign) {
+        if (ob1 < ob2) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    } else if (!sign && !(antherReal.sign)) {
+        if (ob1 < ob2) {
+            return false;
+        }
+        else{
+            return true;
+        }
+    } else if (!sign && antherReal.sign) {
+        return true;
+    } else {
+
+        return false;
+    }
+
+}
+bool BigReal::operator>(BigReal antherBigReal) {
+    if(antherBigReal < *this){
+        return true;
+    }
+    else {
+        return false;
+    }
+
+}
+// operator == overloading function.
+bool BigReal::operator==( BigReal anotherReal) {
+    if (sign == anotherReal.sign && digits.getNumber() == anotherReal.digits.getNumber()) {
+        return true;
+
+    } else {
+        return false;
+    }
+
 }
 
-// function returns the sign
-int BigReal::signReal() {
-    if (sign == '+') {
-        return 1;
-    } else {
-        return 0;
+
+
+
+
+
+
+// return size
+    int BigReal::size() {
+        return digits.getNumber().size();
     }
+
+// function returns the sign
+    int BigReal::signReal() {
+        if (sign) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+// operator << overloading function.
+ostream &operator<<(ostream &out, BigReal num) {
+    if (num.sign == 1) {
+        out << num.digits;
+    } else {
+        if (num.digits.getNumber() == "0") {
+            out << num.digits;
+        } else {
+            out << num.sign << num.digits;
+        }
+    }
+    return out;
+}
+istream& operator >> (istream& out, BigReal num){
+    if (num.sign == 1) {
+        out >> num.digits;
+    } else {
+        if (num.digits.getNumber() == "0") {
+            out >> num.digits;
+        } else {
+            out >> num.sign >> num.digits;
+        }
+    }
+    return out;
 }
