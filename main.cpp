@@ -6,23 +6,18 @@ int main() {
     while (cin >> n1 >> n2) {
         BigReal x(n1);
         BigReal y(n2);
-    /*    BigReal z(x - y);
-        z.print();*/
-         if(x.operator<(y)){
-             cout << "first is smaller\n";
-
-         }
-         else {
-             cout << "second is smaller\n";
-         }
-        if(x.operator>(y)){
-            cout << "first is bigger\n";
-
+        if (x.operator<(y)) {
+            cout << "first is smaller\n";
+        } else {
+            cout << "second is smaller\n";
         }
-        else {
+        if (x.operator>(y)) {
+            cout << "first is bigger\n";
+        } else {
             cout << "second is bigger\n";
         }
-
         cout << endl;
+        cout << "subtract: " << x - y << endl;
+        cout << "addition: " << x + y << endl;
     }
 }
