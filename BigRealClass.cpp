@@ -112,13 +112,17 @@ BigReal BigReal::operator+(BigReal num) {
     } else {
         s = lz + s;
     }
+    int curPos = max(dotpos, num.dotpos);
     if (sign == 0)
         s = '-' + s;
     if (num.sign == 0)
         s1 = '-' + s1;
     BigDecimalInt Big1(s), Big2(s1);
     BigReal BR(Big1 + Big2);
-    BR.dotpos = max(dotpos, num.dotpos);
+    if(BR.size() > Big1.size()){
+        curPos++;
+    }
+    BR.dotpos = curPos;
     return BR;
 }
 
@@ -153,11 +157,14 @@ BigReal BigReal::operator- (BigReal num){
     if(num.sign==0){
         str2 = "-" + str2;
     }
+    int curpos = max(dotpos, num.dotpos);
     BigDecimalInt BDI1(str1), BDI2(str2);
-    BigReal BR(BDI1 - BDI2);
-    BR.dotpos = max(dotpos, num.dotpos);
+    BigDecimalInt subdig(BDI1 - BDI2);
+    curpos -= BDI1.size() - subdig.size();
+    string s = subdig.getNumber();
+    s.insert(curpos, ".");
+    BigReal BR(s);
     return BR;
-
 }
 
 bool BigReal::operator<(BigReal antherReal) {
