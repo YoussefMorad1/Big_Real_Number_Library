@@ -170,9 +170,9 @@ BigReal BigReal::operator- (BigReal num){
 bool BigReal::operator<(BigReal antherReal) {
     string s = digits.getNumber(), s1 = antherReal.digits.getNumber();
     string comp1 = "", comp2 = "";
-    int cnt1 = digits.size(), cnt2 = antherReal.digits.size();
-
-    string str1 = s.substr(0, dotpos);
+    int leftDotPos = dotpos;
+        
+    string str1 = s.substr(0, dotpos); 
 
     string str2 = s1.substr(0, antherReal.dotpos);
 
@@ -182,15 +182,13 @@ bool BigReal::operator<(BigReal antherReal) {
 
     int len1 = (digits.size() - dotpos), len2 = (antherReal.digits.size() - antherReal.dotpos);
 
-    int len3 = frac1.size(), len4 = frac2.size();
-
-    while (dotpos < antherReal.dotpos) {
+    while (dotpos < antherReal.dotpos) {   
         comp1 += "0";
         antherReal.dotpos--;
     }
-    while (dotpos > antherReal.dotpos) {
+    while (leftDotPos > antherReal.dotpos) {
         comp2 += "0";
-        dotpos--;
+        leftDotPos--;  
     }
     str1 = comp1 + str1;
     // 11 , 05
@@ -198,14 +196,15 @@ bool BigReal::operator<(BigReal antherReal) {
     comp1 = "";
     comp2 = "";
 
-    while ((digits.size() - dotpos) > (antherReal.digits.size() - antherReal.dotpos)) {
+    while (len1 > len2) {
         comp1 += '0';
         len1--;
     }
-    while ((digits.size() - dotpos) < (antherReal.digits.size() - antherReal.dotpos)) {
+    while ( len1 <  len2) {
         comp2 += '0';
         len2--;
     }
+    
     frac1 = frac1 + comp1;
     frac2 = frac2 + comp2;
     string BD1 = str1 + frac1, BD2 = str2 + frac2;
@@ -220,7 +219,7 @@ bool BigReal::operator<(BigReal antherReal) {
         }
 
     } else if (!sign && !(antherReal.sign)) {
-        if (ob1 < ob2) {
+        if (ob1 < ob2) { 
             return false;
         }
         else{
@@ -276,26 +275,20 @@ bool BigReal::operator==( BigReal anotherReal) {
 
 // operator << overloading function.
 ostream &operator<<(ostream &out, BigReal num) {
-    if (num.sign == 1) {
+    if (num.sign == 1){
         out << num.digits;
     } else {
         if (num.digits.getNumber() == "0") {
             out << num.digits;
         } else {
-            out << num.sign << num.digits;
+            out << "-" << num.digits;
         }
     }
     return out;
 }
-istream& operator >> (istream& out, BigReal num){
-    if (num.sign == 1) {
-        out >> num.digits;
-    } else {
-        if (num.digits.getNumber() == "0") {
-            out >> num.digits;
-        } else {
-            out >> num.sign >> num.digits;
-        }
-    }
-    return out;
+istream& operator >> (istream& input, BigReal& num){
+    string s;
+    input >> s;
+    num.setdigits(s);
+   
 }
