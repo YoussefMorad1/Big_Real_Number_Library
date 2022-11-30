@@ -134,7 +134,7 @@ BigReal BigReal::operator- (BigReal num){
     for (int i = 0; i < abs((cnt-dotpos)-(cnt1 - num.dotpos)); ++i) {
         lz+="0";
     }
-    if(cnt > cnt1){
+    if(cnt-dotpos > cnt1-num.dotpos){
         str2 = str2 + lz;
     }
     else{
@@ -158,7 +158,7 @@ BigReal BigReal::operator- (BigReal num){
         str2 = "-" + str2;
     }
     int curpos = max(dotpos, num.dotpos);
-    BigDecimalInt BDI1(str1), BDI2(str2);
+    BigDecimalInt BDI1(str1), BDI2(str2);    //13  9   4
     BigDecimalInt subdig(BDI1 - BDI2);
     curpos -= BDI1.size() - subdig.size();
     string s = subdig.getNumber();
