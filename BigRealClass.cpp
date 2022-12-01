@@ -188,10 +188,10 @@ bool BigReal::operator<(BigReal antherReal) {
     }
     while (leftDotPos > antherReal.dotpos) {
         comp2 += "0";
-        leftDotPos--;  
+        leftDotPos--;
     }
     str1 = comp1 + str1;
-    // 11 , 05
+
     str2 = comp2 + str2;
     comp1 = "";
     comp2 = "";
@@ -200,13 +200,14 @@ bool BigReal::operator<(BigReal antherReal) {
         comp1 += '0';
         len1--;
     }
-    while ( len1 <  len2) {
+    while (len1 <  len2) {
         comp2 += '0';
         len2--;
     }
     
-    frac1 = frac1 + comp1;
-    frac2 = frac2 + comp2;
+    frac1 = frac1 + comp2;
+    frac2 = frac2 + comp1;
+
     string BD1 = str1 + frac1, BD2 = str2 + frac2;
     BigDecimalInt ob1(BD1), ob2(BD2);
 
@@ -246,7 +247,6 @@ bool BigReal::operator>(BigReal antherBigReal) {
 bool BigReal::operator==( BigReal anotherReal) {
     if (sign == anotherReal.sign && digits.getNumber() == anotherReal.digits.getNumber()) {
         return true;
-
     } else {
         return false;
     }
@@ -256,39 +256,39 @@ bool BigReal::operator==( BigReal anotherReal) {
 
 
 
-
-
-
 // return size
-    int BigReal::size() {
-        return digits.getNumber().size();
-    }
+int BigReal::size() {
+    return digits.getNumber().size();
+}
 
 // function returns the sign
-    int BigReal::signReal() {
-        if (sign) {
-            return 1;
-        } else {
-            return 0;
-        }
+int BigReal::signReal() {
+    if (sign) {
+        return 1;
+    } else {
+        return 0;
     }
+}
 
 // operator << overloading function.
 ostream &operator<<(ostream &out, BigReal num) {
+    string s = num.digits.getNumber();
+    s.insert(num.dotpos, ".");
     if (num.sign == 1){
-        out << num.digits;
+        out << s;
     } else {
         if (num.digits.getNumber() == "0") {
-            out << num.digits;
+            out << s;
         } else {
-            out << "-" << num.digits;
+            out << "-" << s;
         }
     }
     return out;
 }
+
 istream& operator >> (istream& input, BigReal& num){
     string s;
     input >> s;
     num.setdigits(s);
-   
+    return input;
 }

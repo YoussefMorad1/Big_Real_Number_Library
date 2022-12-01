@@ -11,6 +11,8 @@ private:
 public:
     void setdigits(string str);
 
+    BigReal(){}
+
     BigReal(string str);
 
     BigReal(double num);
@@ -39,7 +41,7 @@ public:
 
     friend ostream& operator << (ostream& out, BigReal num);
 
-    friend istream& operator >> (istream& out, BigReal num);
+    friend istream& operator >> (istream& input, BigReal& num);
 
     bool operator== (BigReal anotherReal);
 
