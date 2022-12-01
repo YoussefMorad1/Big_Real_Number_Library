@@ -17,7 +17,7 @@ void BigReal::setdigits(string str) {
             break;
         }
     }
-    str = str.substr(idx + 1, str.size() - idx);
+    str = str.substr(idx + 1, str.size() - idx - 1);
     if(str.empty()) str = "0";
     int pos = str.find('.');
     if (pos != -1) {
