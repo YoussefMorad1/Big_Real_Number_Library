@@ -164,6 +164,7 @@ BigReal BigReal::operator- (BigReal num){
     string s = subdig.getNumber();
     s.insert(curpos, ".");
     BigReal BR(s);
+    BR.sign = subdig.sign();
     return BR;
 }
 
